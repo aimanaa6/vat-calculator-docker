@@ -1,4 +1,5 @@
-FROM node:24-alpine
+# stage 1
+FROM node:24-alpine AS stage1
 
 # change into a folder called /app
 WORKDIR /app
@@ -16,12 +17,11 @@ COPY . .
 RUN npm run build
 
 # stage 2
-FROM ubuntu:22.04
+FROM nginx:1.28-alpine
+COPY --from=stage1 /app/build /usr/share/nginx/html
 
-RUN apt update
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN apt install -y git
+EXPOSE 80
 
-RUN apt install -y default-jdk
-
-CMD ["npm", "run", "start"]
+CMD ["nginx", "-g", "daemon off;"]
