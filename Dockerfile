@@ -15,4 +15,13 @@ COPY . .
 # package up the react project in the /app directory
 RUN npm run build
 
+# stage 2
+FROM ubuntu:22.04
+
+RUN apt update
+
+RUN apt install -y git
+
+RUN apt install -y default-jdk
+
 CMD ["npm", "run", "start"]
