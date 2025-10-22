@@ -4,7 +4,7 @@
 }
 
 .colour-border{
-  border: 3px solid purple;
+  border: 3px solid green;
   padding: 10px;
 }
 
@@ -14,5 +14,5 @@
 
 body{
   padding: 10px;
-  background-color: paleturquoise;
+  background-color: lightcoral;
 }
